@@ -1,0 +1,386 @@
+{
+	"name": "Process NO_FT_DAILY_IFARM file",
+	"properties": {
+		"activities": [
+			{
+				"name": "Copy xlsx file",
+				"description": "Copy information from NO_FT_DAILY_IFARM.xlsx in a Azure File Share to a staging table in the database FishTalk on Azure SQL Managed instance (sqlmanaged01).",
+				"type": "Copy",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"source": {
+						"type": "ExcelSource",
+						"storeSettings": {
+							"type": "AzureFileStorageReadSettings",
+							"recursive": false
+						}
+					},
+					"sink": {
+						"type": "AzureSqlSink"
+					},
+					"enableStaging": false,
+					"translator": {
+						"type": "TabularTranslator",
+						"mappings": [
+							{
+								"source": {
+									"name": "Mortality biomass in period",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Mortality_biomass_in_period",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Mortality count in period",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Mortality_count_in_period",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Biological FCR in period",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Biological_FCR_in_period",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Economical FCR in period",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Economical_FCR_in_period",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Biological FCR, feed eaten in period",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Biological_FCR__feed_eaten_in_period",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "FCR Model in period",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "FCR_Model_in_period",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Closing Feed amount",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Closing_Feed_amount",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Fish group name",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Fish_group_name",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Gross growth in period",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Gross_growth_in_period",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Gross growth % in period",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Gross_growth_%_in_period",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Closing EGI",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Closing_EGI",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Year class",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Year_class",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Broodstock",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Broodstock",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Number of lice countings in period",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Number_of_lice_countings_in_period",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Number of fish in lice countings in period",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Number_of_fish_in_lice_countings_in_period",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Avg. Lep. Movable in period",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Avg__Lep__Movable_in_period",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Avg. Lep. Juveniles in period",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Avg__Lep__Juveniles_in_period",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Avg. Lep. Adult female in period",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Avg__Lep__Adult_female_in_period",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Avg. Lep. all stages in period",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Avg__Lep__all_stages_in_period",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Unit",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Unit",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Site",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Site",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Closing Count",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Closing_Count",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Closing Biomass",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Closing_Biomass",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Closing TGC",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Closing_TGC",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							},
+							{
+								"source": {
+									"name": "Closing Date",
+									"type": "String",
+									"physicalType": "String"
+								},
+								"sink": {
+									"name": "Closing_Date",
+									"type": "String",
+									"physicalType": "nvarchar"
+								}
+							}
+						],
+						"typeConversion": true,
+						"typeConversionSettings": {
+							"allowDataTruncation": true,
+							"treatBooleanAsNumber": false
+						}
+					}
+				},
+				"inputs": [
+					{
+						"referenceName": "AZFILE_NO_FT_DAILY_IFARM_XLSX",
+						"type": "DatasetReference"
+					}
+				],
+				"outputs": [
+					{
+						"referenceName": "AZDB_Fishtalk_stg_NO_FT_DAILY_IFARM",
+						"type": "DatasetReference"
+					}
+				]
+			},
+			{
+				"name": "sp_NO_FT_DAILY_IFARM_merge_from_stg",
+				"description": "Runs Stored Procedure sp_NO_FT_DAILY_IFARM_merge_from_stg to merge data from the staging table (stg_NO_FT_DAILY_IFARM) and the production table (NO_FT_DAILY_IFARM)",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "Copy xlsx file",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[sp_NO_FT_DAILY_IFARM_merge_from_stg]"
+				},
+				"linkedServiceName": {
+					"referenceName": "azdatabaseFishtalk",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2020-10-13T19:15:10Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

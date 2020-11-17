@@ -1,0 +1,170 @@
+{
+	"name": "Process InnovaSea Device files",
+	"properties": {
+		"activities": [
+			{
+				"name": "Get Metadata from Azure Files",
+				"description": "fs-InnovaSea",
+				"type": "GetMetadata",
+				"dependsOn": [],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"dataset": {
+						"referenceName": "DevicesMetaDataset",
+						"type": "DatasetReference"
+					},
+					"fieldList": [
+						"childItems"
+					],
+					"storeSettings": {
+						"type": "AzureFileStorageReadSettings",
+						"recursive": true
+					},
+					"formatSettings": {
+						"type": "JsonReadSettings"
+					}
+				}
+			},
+			{
+				"name": "ForEach1",
+				"type": "ForEach",
+				"dependsOn": [
+					{
+						"activity": "Get Metadata from Azure Files",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"userProperties": [],
+				"typeProperties": {
+					"items": {
+						"value": "@activity('Get Metadata from Azure Files').output.childItems",
+						"type": "Expression"
+					},
+					"activities": [
+						{
+							"name": "Lookup1",
+							"description": "Doing a lookup of evey JSON file",
+							"type": "Lookup",
+							"dependsOn": [],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"source": {
+									"type": "JsonSource",
+									"storeSettings": {
+										"type": "AzureFileStorageReadSettings",
+										"recursive": false
+									},
+									"formatSettings": {
+										"type": "JsonReadSettings"
+									}
+								},
+								"dataset": {
+									"referenceName": "DevicesSourceDataset",
+									"type": "DatasetReference",
+									"parameters": {
+										"FileName": {
+											"value": "@item().name",
+											"type": "Expression"
+										}
+									}
+								},
+								"firstRowOnly": false
+							}
+						},
+						{
+							"name": "Stored procedure sp_ImportInnovaSeaJSON",
+							"description": "Running a stored procedure on the SQL Server, with JSON-input from Lookup. Data is stored in a table called Devices and stores raw JSON and SiteID.",
+							"type": "SqlServerStoredProcedure",
+							"dependsOn": [
+								{
+									"activity": "Lookup1",
+									"dependencyConditions": [
+										"Succeeded"
+									]
+								}
+							],
+							"policy": {
+								"timeout": "7.00:00:00",
+								"retry": 0,
+								"retryIntervalInSeconds": 30,
+								"secureOutput": false,
+								"secureInput": false
+							},
+							"userProperties": [],
+							"typeProperties": {
+								"storedProcedureName": "[dbo].[sp_ImportInnovaSeaJSON]",
+								"storedProcedureParameters": {
+									"JSONDATA": {
+										"value": {
+											"value": "@string(activity('Lookup1').output.value)",
+											"type": "Expression"
+										},
+										"type": "String"
+									},
+									"SiteID": {
+										"value": {
+											"value": "@item().name",
+											"type": "Expression"
+										},
+										"type": "String"
+									}
+								}
+							},
+							"linkedServiceName": {
+								"referenceName": "azdatabaseInnovaSea",
+								"type": "LinkedServiceReference"
+							}
+						}
+					]
+				}
+			},
+			{
+				"name": "Stored procedure sp_ParseInnovaSeaJSON",
+				"description": "Stored procedure running on SQL to parse the raw JSON from table Devices, and make it into a tabular form i table DevicesParsed. Staging table Devices is truncated after transfer.",
+				"type": "SqlServerStoredProcedure",
+				"dependsOn": [
+					{
+						"activity": "ForEach1",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"timeout": "7.00:00:00",
+					"retry": 0,
+					"retryIntervalInSeconds": 30,
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"storedProcedureName": "[dbo].[sp_ParseInnovaSeaJSON]"
+				},
+				"linkedServiceName": {
+					"referenceName": "azdatabaseInnovaSea",
+					"type": "LinkedServiceReference"
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2020-11-09T13:50:23Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

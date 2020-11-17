@@ -1,0 +1,122 @@
+{
+	"name": "AZFILE_NO_FT_DAILY_IFARM_XLSX",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "fishtalk",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Excel",
+		"typeProperties": {
+			"sheetName": "NO_FT_DAILY_IFARM",
+			"location": {
+				"type": "AzureFileStorageLocation",
+				"fileName": "NO_FT_DAILY_IFARM.xlsx"
+			},
+			"firstRowAsHeader": true
+		},
+		"schema": [
+			{
+				"name": "Mortality biomass in period",
+				"type": "String"
+			},
+			{
+				"name": "Mortality count in period",
+				"type": "String"
+			},
+			{
+				"name": "Biological FCR in period",
+				"type": "String"
+			},
+			{
+				"name": "Economical FCR in period",
+				"type": "String"
+			},
+			{
+				"name": "Biological FCR, feed eaten in period",
+				"type": "String"
+			},
+			{
+				"name": "FCR Model in period",
+				"type": "String"
+			},
+			{
+				"name": "Closing Feed amount",
+				"type": "String"
+			},
+			{
+				"name": "Fish group name",
+				"type": "String"
+			},
+			{
+				"name": "Gross growth in period",
+				"type": "String"
+			},
+			{
+				"name": "Gross growth % in period",
+				"type": "String"
+			},
+			{
+				"name": "Closing EGI",
+				"type": "String"
+			},
+			{
+				"name": "Year class",
+				"type": "String"
+			},
+			{
+				"name": "Broodstock",
+				"type": "String"
+			},
+			{
+				"name": "Number of lice countings in period",
+				"type": "String"
+			},
+			{
+				"name": "Number of fish in lice countings in period",
+				"type": "String"
+			},
+			{
+				"name": "Avg. Lep. Movable in period",
+				"type": "String"
+			},
+			{
+				"name": "Avg. Lep. Juveniles in period",
+				"type": "String"
+			},
+			{
+				"name": "Avg. Lep. Adult female in period",
+				"type": "String"
+			},
+			{
+				"name": "Avg. Lep. all stages in period",
+				"type": "String"
+			},
+			{
+				"name": "Unit",
+				"type": "String"
+			},
+			{
+				"name": "Site",
+				"type": "String"
+			},
+			{
+				"name": "Closing Count",
+				"type": "String"
+			},
+			{
+				"name": "Closing Biomass",
+				"type": "String"
+			},
+			{
+				"name": "Closing TGC",
+				"type": "String"
+			},
+			{
+				"name": "Closing Date",
+				"type": "String"
+			}
+		]
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

@@ -1,0 +1,24 @@
+{
+	"name": "Daily at 1000",
+	"properties": {
+		"annotations": [],
+		"runtimeState": "Started",
+		"pipelines": [
+			{
+				"pipelineReference": {
+					"referenceName": "Process NO_FT_DAILY_IFARM file",
+					"type": "PipelineReference"
+				}
+			}
+		],
+		"type": "ScheduleTrigger",
+		"typeProperties": {
+			"recurrence": {
+				"frequency": "Hour",
+				"interval": 24,
+				"startTime": "2020-09-24T10:00:00",
+				"timeZone": "Romance Standard Time"
+			}
+		}
+	}
+}

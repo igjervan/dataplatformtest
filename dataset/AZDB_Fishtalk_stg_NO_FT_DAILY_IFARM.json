@@ -1,0 +1,118 @@
+{
+	"name": "AZDB_Fishtalk_stg_NO_FT_DAILY_IFARM",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "azdatabaseFishtalk",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "AzureSqlTable",
+		"schema": [
+			{
+				"name": "Mortality_biomass_in_period",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Mortality_count_in_period",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Biological_FCR_in_period",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Economical_FCR_in_period",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Biological_FCR__feed_eaten_in_period",
+				"type": "nvarchar"
+			},
+			{
+				"name": "FCR_Model_in_period",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Closing_Feed_amount",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Fish_group_name",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Gross_growth_in_period",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Gross_growth_%_in_period",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Closing_EGI",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Year_class",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Broodstock",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Number_of_lice_countings_in_period",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Number_of_fish_in_lice_countings_in_period",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Avg__Lep__Movable_in_period",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Avg__Lep__Juveniles_in_period",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Avg__Lep__Adult_female_in_period",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Avg__Lep__all_stages_in_period",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Unit",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Site",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Closing_Count",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Closing_Biomass",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Closing_TGC",
+				"type": "nvarchar"
+			},
+			{
+				"name": "Closing_Date",
+				"type": "nvarchar"
+			}
+		],
+		"typeProperties": {
+			"schema": "dbo",
+			"table": "stg_NO_FT_DAILY_IFARM"
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

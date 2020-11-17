@@ -1,0 +1,68 @@
+{
+	"name": "DevicesMetaDataset",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "InnovaSea",
+			"type": "LinkedServiceReference"
+		},
+		"annotations": [],
+		"type": "Json",
+		"typeProperties": {
+			"location": {
+				"type": "AzureFileStorageLocation"
+			}
+		},
+		"schema": {
+			"type": "object",
+			"properties": {
+				"Id": {
+					"type": "string"
+				},
+				"Type": {
+					"type": "string"
+				},
+				"ModelVariant": {
+					"type": "string"
+				},
+				"Descriptor": {
+					"type": "string"
+				},
+				"Measurements": {
+					"type": "array",
+					"items": {
+						"type": "string"
+					}
+				},
+				"Data": {
+					"type": "array",
+					"items": {
+						"type": "object",
+						"properties": {
+							"Timestamp": {
+								"type": "string"
+							},
+							"Type": {
+								"type": "string"
+							},
+							"Dimensions": {
+								"type": "array",
+								"items": {
+									"type": "object",
+									"properties": {
+										"Value": {
+											"type": "integer"
+										},
+										"Unit": {
+											"type": "string"
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}
